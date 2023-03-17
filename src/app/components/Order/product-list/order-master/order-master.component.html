@@ -1,0 +1,25 @@
+<h2>Create your category :</h2>
+<div>
+  <label for="prdCat" class="form-label">Category</label>
+  <!-- <select class="form-contro" name="Cat" id="prdCat" (change)="getSelected(cat.value)"> -->
+  <select
+    class="form-control"
+    name="Cat"
+    id="prdCat"
+    [(ngModel)]="selectedCatId"
+  >
+  <option value= '0' selected>All</option>
+    <option *ngFor="let Cat of CatList" [value]="Cat.id">{{ Cat.name }}</option>
+  </select>
+</div>
+<hr />
+<div class="bg-danger">
+  <app-product-list [sentCatId]="selectedCatId" (totalPriceChanged)="onTotalPriceChanged($event)"></app-product-list>
+</div>
+
+<hr />
+<div>
+  <!-- من غير ايفنت اقدر اشوف اوبجكت من الانبوت -->
+ <h3>Enter your name : </h3> <input type="text" #clientInp class="form-control" >
+</div>
+<h3>Order total price: {{ receivedOrderTotalPrice }}</h3>

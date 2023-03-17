@@ -1,0 +1,15 @@
+<!-- interpolatio -->
+<!-- <img src="{{storeInfo.imgURL}}" alt=""> -->
+<!-- property binding -->
+<!-- <img [src]="storeInfo.imgURL" alt="" class="img-fluid m-1"> -->
+<!-- بقوله روح كلاس ستور ده هتلاقي حاجه اسمها اميج يو ار ال -->
+<img *ngIf="isImgShown" [src]="storeInfo.imgURL" alt="" class="img-fluid m-1">
+<button type="button" class="btn btn-primary" (click)="toggleIMG()">Toggle img</button>
+<h1>{{storeInfo.name}}</h1>
+<h3>Our Branches: </h3>
+<!-- structure directives -->
+<ul>
+    <li *ngFor="let item of storeInfo.branches">
+        {{item}}
+    </li>
+</ul>

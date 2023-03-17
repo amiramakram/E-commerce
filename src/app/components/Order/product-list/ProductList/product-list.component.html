@@ -1,0 +1,115 @@
+<!-- <div>
+  <label for="prdCat" class="form-label">Category</label>
+  <select class="form-contro" name="Cat" id="prdCat" (change)="getSelected(cat.value)">
+  <select
+    class="form-control"
+    name="Cat"
+    id="prdCat"
+    [(ngModel)]="selectedCatId" (change)="filterByCatId()">
+    <option *ngFor="let Cat of CatList" [value]="Cat.id">{{ Cat.name }}</option>
+  </select>
+</div> -->
+<!-- ________________________________________ -->
+<!-- filtration method -->
+<!-- <div class="text-secondary">
+  [To be Removed] For test:
+  {{ selectedCatId }}
+  <br />
+  <button type="button" class="btn btn-primary" (click)="changeCat()">
+    Change category: 
+  </button>
+  <br>
+Today's date:{{orderDate|date:'longDate'}}
+</div> -->
+<!-- _______________________________________ -->
+<hr />
+<table class="table">
+  <thead>
+    <tr class="bg-dark text-light">
+      <!-- <th>ID</th> -->
+      <th>No.</th>
+
+      <th>Name</th>
+      <th>Image</th>
+      <th>Av. Quantity</th>
+      <th>Price in USD</th>
+      <th>Price in EGP</th>
+
+      <th>Count</th>
+
+      <th>Buy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!--  <tr *ngFor="let prd of PrList;let i=index" [class.d-none]="selectedCatId!=prd.categoryID" [style.background-color]="(prd.quantity==0)?'yellow':'white'" >-->
+    <!-- ______________________________________ -->
+    <!-- class styling  -->
+    <!-- [class.bg-warning]="prd.quantity==0" -->
+    <!-- ____________________ -->
+    <!-- ngClass -->
+    <!-- [ngClass]="{'bg-warning':prd.quantity==0,'text-light':prd.quantity==0}" -->
+    <!-- _________________ -->
+    <!-- ngStyle -->
+    <tr
+      *ngFor="let prd of prdListOfCat; let i = index"
+      [ngStyle]="{
+        'background-color': prd.quantity == 0 ? 'lightblue' : 'gray',
+        color: prd.quantity == 0 ? 'black' : 'white'
+      }"
+    >
+      <!-- [hidden]="prd.quantity==0" -->
+      <!-- ==>    ng-container -->
+      <!-- safe navigation operator==>{{prd?.id}} -->
+      <!-- [class.bg-danger]="prd.quantity==0"  -->
+      <!-- <td>{{ prd?.id }}</td> -->
+      <!-- _________________________________________________- -->
+      <!-- <ng-container *ngFor="let prd of PrList;let i=index" >
+      <tr *ngIf="(prd.quantity!=0)"> -->
+
+      <td>{{ i + 1 }}</td>
+      <td>{{ prd.name }}</td>
+
+      <td>
+        <img
+          LightBox
+          highLightColor="blue"
+          defaultColor="darkblue"
+          [src]="prd.imgURL"
+          alt=""
+        />
+      </td>
+      <!-- <td>{{ prd.quantity }}</td> -->
+      <td>
+        <!-- <div *ngIf="prd.quantity!=0">{{ prd.quantity }}</div>
+        <div *ngIf="prd.quantity==0">Out of stock</div> -->
+        <!-- _______________Ng-if with divs only______________ -->
+        <!-- <div *ngIf="prd.quantity != 0; else outOfStock">{{ prd.quantity }}</div>
+        <ng-template #outOfStock>Out of stock</ng-template> -->
+        <!-- ________________Ng-if with ng-template_______________ -->
+        <ng-container [ngSwitch]="prd.quantity">
+          <div *ngSwitchCase="0">Out of stock</div>
+          <div *ngSwitchCase="9">last 2 items</div>
+          <div *ngSwitchDefault>{{ prd.quantity }}</div>
+        </ng-container>
+      </td>
+      <td>{{ prd.price | currency : "EUR" : "code" }}</td>
+      <td>{{ prd.price | USDtoEGP : 0.12 | currency : "EGP" : "code" }}</td>
+
+      <!-- templete variable -->
+      <td><input #inputCount class="form-control" type="number" /></td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="buy(prd.price, inputCount.value)"
+        >
+          Buy
+        </button>
+      </td>
+    </tr>
+    <!-- </ng-container> -->
+  </tbody>
+</table>
+<!-- <h3 class="text-warning">
+  [To be Removed] For Test : <br>
+  Order Total Price: {{ OrderTotalPrice }}</h3> -->
