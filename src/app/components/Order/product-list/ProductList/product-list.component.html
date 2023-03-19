@@ -36,8 +36,9 @@ Today's date:{{orderDate|date:'longDate'}}
       <th>Price in EGP</th>
 
       <th>Count</th>
+      <th>Details</th>
 
-      <th>Buy</th>
+      <th>Add to cart</th>
     </tr>
   </thead>
   <tbody>
@@ -97,13 +98,24 @@ Today's date:{{orderDate|date:'longDate'}}
 
       <!-- templete variable -->
       <td><input #inputCount class="form-control" type="number" /></td>
-      <td>
+      <!-- <td>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="openPrdDetails(prd.id)"
+        >
+          Details
+        </button>
+      </td> -->
+     <td> <a class="btn btn-primary"  [routerLink]="['/Products',prd.id]" role="button">Details</a>
+     </td>
+     <td>
         <button
           type="button"
           class="btn btn-secondary"
           (click)="buy(prd.price, inputCount.value)"
         >
-          Buy
+          Add to cart
         </button>
       </td>
     </tr>

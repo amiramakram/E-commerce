@@ -14,6 +14,8 @@ import { USDtoEGPPipe } from './Pipes/usdto-egp.pipe';
 import { OrderMasterComponent } from './components/Order/product-list/order-master/order-master.component';
 import { NotFoundComponent } from './components/NotFound/not-found/not-found.component';
 import { UserLoginComponent } from './components/userLogin/user-login/user-login.component';
+import { LayoutComponent } from './components/layout/layout/layout.component';
+import { ProductDetailsComponent } from './components/Order/product-list/order-master/product-details/product-details.component';
 
 
 @NgModule({
@@ -29,6 +31,8 @@ import { UserLoginComponent } from './components/userLogin/user-login/user-login
     OrderMasterComponent,
     NotFoundComponent,
     UserLoginComponent,
+    LayoutComponent,
+    ProductDetailsComponent,
     
   ],
   imports: [

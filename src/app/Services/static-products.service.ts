@@ -17,7 +17,7 @@ export class StaticProductsService {
         categoryID: 1,
       },
       {
-        id: 2,
+        id: 200,
         name: 'device2',
         price: 17000000000,
         quantity: 10,
@@ -73,4 +73,10 @@ return this.PrList;
   addNewProduct(prd:IProduct){
 this.PrList.push(prd);
   }
+
+getPrdsIds():number[]{
+  let prdIDs:number[]=this.PrList.map(prd=>prd.id);
+  return prdIDs;
+}
+
 }

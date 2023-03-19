@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 import { ICategory } from 'src/app/Model/icategory';
 import { IProduct } from 'src/app/Model/iproduct';
 import { StaticProductsService } from 'src/app/Services/static-products.service';
@@ -16,7 +17,7 @@ export class ProductListComponent implements OnInit,OnChanges {
   OrderTotalPrice: number = 0;
   orderDate: Date;
 
-  constructor(private staticPrdSer:StaticProductsService) {
+  constructor(private staticPrdSer:StaticProductsService,private router:Router) {
     // this.PrList = [
     //   {
     //     id: 1,
@@ -94,4 +95,9 @@ export class ProductListComponent implements OnInit,OnChanges {
   // changeCat() {
   //   this.selectedCatId = 1;
   // }
+  openPrdDetails(prdID: number){
+this.router.navigate(['/Products',prdID]); 
+
+     
+  }
 }
